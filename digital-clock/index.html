@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock2</title>
+    <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    background-color:rgb(14, 1, 27);
+}
+.center{
+    height:100vh;
+    width: 100vw;
+    background-color:rgb(14, 1, 27);
+    display: grid;
+    place-items: center;
+
+
+}
+.row1{
+  margin:10%;
+    width:200px;
+    border-radius: 30px;
+    background-color:rgba(128, 128, 128, 0.148);
+    position: absolute;
+margin:0 30px;    
+    z-index: 3;
+}
+
+.row2{
+
+    width:200px;
+    border-radius: 30px;
+    background:transparent;
+    position: absolute;
+    right:0px;
+  font-size:40px;
+  color: white;
+z-index:2;
+top:10px;
+right:10px;
+}
+.btn {
+    height:150px;
+    width:150px;
+    background-color:rgba(128, 128, 128, 0.148);
+    margin:17px auto;
+    border-radius: 20px;
+    box-shadow: 0 12px 15px -8px black; 
+    padding-block:20px;
+    font-size: 120px;
+color: rgba(240, 248, 255, 0.571);
+
+    text-align: center;
+}
+
+.btns{
+    height:70px;
+    width:70px;
+    background-color:rgba(128, 128, 128, 0.148);
+    margin:0px auto 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 12px 15px -8px black; 
+    z-index:4;
+    font-size: 40px;
+
+    padding-block:10px;
+    text-align: center;
+    color: rgba(240, 248, 255, 0.571);
+}
+
+.circle1{
+    height:170px;
+    width:170px;
+    background:linear-gradient(180deg,darkorange,red,red);
+    border-radius: 50%;
+position: relative;
+left:-95px;
+z-index:1;
+bottom: -350px;
+filter: blur(1px);
+animation: move2 9s linear infinite alternate-reverse;
+
+}
+.text{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+ 
+    font-size: 50px;
+    color:rgb(130, 250, 10)
+}
+.circle1::before{
+    content: " ";
+    height:100%;
+    width:60%;
+    
+    background:linear-gradient(180deg,darkorange,red,red);
+    border-radius:10px 50% 50% 10px;
+position: absolute;
+left:70px;
+z-index:5;
+top:0px;
+
+
+filter: blur(10px);
+
+}
+
+.circle2::before{
+    content: " ";
+    height:100%;
+    width:60%;
+    
+    background:linear-gradient(180deg,deepskyblue,darkblue,darkblue);
+    border-radius:50% 10px 10px 50% ;
+position: absolute;
+right:70px;
+z-index:5;
+top:0px;
+
+
+filter: blur(10px);
+
+}
+
+.circle2{
+    height:170px;
+    width:170px;
+    background:linear-gradient(180deg,deepskyblue,darkblue,darkblue);
+    border-radius: 50%;
+position: relative;
+right:-95px;
+z-index:1;
+top:-350px;
+filter: blur(1px);
+animation: move1 9s linear infinite alternate-reverse;
+}
+@keyframes move1{
+    0%{
+        top:-350px;
+    }
+    50%{
+        top:-180px;
+    }
+    0%{
+        top:-160px;
+    }
+
+}
+@keyframes move2{
+    0%{
+        bottom:-350px;
+    }
+    50%{
+        bottom:-180px;
+    }
+    0%{
+        bottom:-130px;
+    }
+
+}
+@media only screen and (max-width:650px){
+
+
+    .row2{
+
+width:110px;
+
+background:transparent;
+position: absolute;
+right:2px;
+font-size:22px;
+color: white;
+z-index:2;
+top:0px;
+
+}
+
+.text{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+ 
+    font-size: 20px;
+    color:rgb(130, 250, 10)
+}
+
+.center{
+    height:100%;
+    width: 100%;
+    background-color:rgb(14, 1, 27);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+flex-direction: column;
+}
+
+
+.row1{
+margin-top: 330px;
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+    
+<div class="center">
+    <p class="text">Digital clock</p>
+<div class="circle1"></div>
+
+<div class="row2"><p id="id4"></p></div>
+<div class="row1">
+    <div class="btn"id="id1"></div>
+    <div class="btn"id="id2"></div>
+    <div class="btn"id="id3"></div>
+<div class="btns"id="id5"></div>
+</div>
+<div class="circle2"></div>
+
+</div>
+
+
+
+<script>
+
+setInterval(()=>{
+
+    let a=new Date();
+let h=a.getHours();
+
+let m=a.getMinutes();
+let s=a.getSeconds();
+let p=a.toDateString();
+
+if(h>=12){
+    let H=h-12;
+document.getElementById("id5").innerHTML="PM";
+
+document.getElementById("id1").innerHTML=H;
+
+document.getElementById("id2").innerHTML=m;
+
+document.getElementById("id3").innerHTML=s;
+
+
+document.getElementById("id4").innerHTML=p;
+
+}
+else{
+
+    document.getElementById("id1").innerHTML=h;
+
+document.getElementById("id2").innerHTML=m;
+
+document.getElementById("id3").innerHTML=s;
+
+
+document.getElementById("id4").innerHTML=p;
+
+    document.getElementById("id5").innerHTML="AM";
+}
+
+
+},1000)
+
+
+
+
+</script>
+
+</body>
+</html>
